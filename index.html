@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1120;
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 17, 32, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        nav {
+            max-width: 1150px;
+            margin: auto;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #cbd5e1;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #38bdf8;
+        }
+
+        section {
+            max-width: 1150px;
+            margin: auto;
+            padding: 100px 25px;
+        }
+
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 120px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero h2 {
+            color: #94a3b8;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #cbd5e1;
+            font-size: 17px;
+        }
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #38bdf8;
+            color: #0b1120;
+        }
+
+        .primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+        }
+
+        .secondary {
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+        }
+
+        .secondary:hover {
+            background: #38bdf8;
+            color: #0b1120;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #94a3b8;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-box {
+            background: #111827;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #1e293b;
+            transition: 0.3s;
+        }
+
+        .about-box:hover {
+            transform: translateY(-6px);
+            border-color: #38bdf8;
+        }
+
+        .about-box h3 {
+            color: #38bdf8;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .about-box p {
+            color: #cbd5e1;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill {
+            background: #1e293b;
+            color: #7dd3fc;
+            padding: 10px 16px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            background: #38bdf8;
+            color: #0b1120;
+            transform: translateY(-3px);
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 15px;
+            padding: 25px;
+            transition: 0.4s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #38bdf8;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .project-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            color: #f8fafc;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: #94a3b8;
+            margin-bottom: 18px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tags span {
+            background: #1e293b;
+            color: #7dd3fc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .education {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .education-card {
+            background: #111827;
+            border-left: 4px solid #38bdf8;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .education-card h3 {
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+
+        .education-card p {
+            color: #cbd5e1;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .contact-info {
+            background: #111827;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #1e293b;
+        }
+
+        .contact-info h3 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            margin: 18px 0;
+            color: #cbd5e1;
+        }
+
+        .contact-item strong {
+            color: #f8fafc;
+        }
+
+        form {
+            background: #111827;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #1e293b;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            background: #0f172a;
+            color: white;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #38bdf8;
+        }
+
+        textarea {
+            height: 140px;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #38bdf8;
+            color: #0b1120;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #070d18;
+            color: #94a3b8;
+            border-top: 1px solid #1e293b;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #38bdf8;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #38bdf8;
+            color: #0b1120;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 850px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #0b1120;
+                flex-direction: column;
+                align-items: center;
+                padding: 25px;
+                display: none;
+                border-bottom: 1px solid #1e293b;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .projects {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .hero h2 {
+                font-size: 21px;
+            }
+
+            section {
+                padding: 80px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">Portfolio</div>
+
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home">
+    <div class="hero fade-in">
+        <h1>Hello, I'm <span>Subhan</span></h1>
+        <h2>Computer Science Student & Web Developer</h2>
+        <p>
+            I create responsive websites, desktop applications and database-based
+            projects using modern programming technologies.
+        </p>
+
+        <div class="buttons">
+            <a href="#projects" class="btn primary">View My Projects</a>
+            <a href="#contact" class="btn secondary">Contact Me</a>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <div class="section-title fade-in">
+        <h2>About Me</h2>
+        <p>Get to know me</p>
+    </div>
+
+    <div class="about-content">
+        <div class="about-box fade-in">
+            <h3>Who I Am</h3>
+            <p>
+                I am a Computer Science student interested in web development,
+                software development, databases and problem solving. I enjoy
+                building practical projects and learning new technologies.
+            </p>
+        </div>
+
+        <div class="about-box fade-in">
+            <h3>What I Do</h3>
+            <p>
+                I develop user-friendly websites and applications using
+                HTML, CSS, JavaScript, Java, Python and SQL. I also work with
+                Object-Oriented Programming, Data Structures and Database Systems.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <div class="section-title fade-in">
+        <h2>My Skills</h2>
+        <p>Technologies and concepts I work with</p>
+    </div>
+
+    <div class="about-box fade-in">
+        <div class="skills">
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">Java</span>
+            <span class="skill">Python</span>
+            <span class="skill">SQL</span>
+            <span class="skill">PHP</span>
+            <span class="skill">MySQL</span>
+            <span class="skill">OOP</span>
+            <span class="skill">DSA</span>
+            <span class="skill">DBMS</span>
+            <span class="skill">Responsive Design</span>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="section-title fade-in">
+        <h2>My Projects</h2>
+        <p>Some of my recent work</p>
+    </div>
+
+    <div class="projects">
+
+        <div class="project-card fade-in">
+            <div class="project-icon">🛍️</div>
+            <h3>Beauty Product Management System</h3>
+            <p>
+                A database-based web system for managing beauty products,
+                customers, orders, payments and reviews.
+            </p>
+
+            <div class="project-tags">
+                <span>PHP</span>
+                <span>MySQL</span>
+                <span>HTML</span>
+                <span>CSS</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-icon">🎢</div>
+            <h3>Amusement Park System</h3>
+            <p>
+                A web-based amusement park system featuring rides,
+                ticket generation, payments and database management.
+            </p>
+
+            <div class="project-tags">
+                <span>PHP</span>
+                <span>MySQL</span>
+                <span>JavaScript</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-icon">🔐</div>
+            <h3>Password Manager</h3>
+            <p>
+                A Java desktop application demonstrating Linked List,
+                Stack, Searching and Sorting concepts.
+            </p>
+
+            <div class="project-tags">
+                <span>Java</span>
+                <span>DSA</span>
+                <span>Swing</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-icon">🚑</div>
+            <h3>Emergency Response System</h3>
+            <p>
+                An emergency management system with patients, doctors,
+                nurses, medicines and ambulance routing.
+            </p>
+
+            <div class="project-tags">
+                <span>PHP</span>
+                <span>MySQL</span>
+                <span>BFS</span>
+                <span>DFS</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-icon">🎵</div>
+            <h3>Music Player</h3>
+            <p>
+                A responsive JavaScript music player with playlist,
+                controls, progress bar, volume and autoplay.
+            </p>
+
+            <div class="project-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+            </div>
+        </div>
+
+        <div class="project-card fade-in">
+            <div class="project-icon">🧮</div>
+            <h3>JavaScript Calculator</h3>
+            <p>
+                A responsive calculator supporting arithmetic operations,
+                keyboard input, percentage and live results.
+            </p>
+
+            <div class="project-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="education">
+    <div class="section-title fade-in">
+        <h2>Education</h2>
+        <p>My academic background</p>
+    </div>
+
+    <div class="education">
+
+        <div class="education-card fade-in">
+            <h3>Bachelor of Science in Computer Science</h3>
+            <p>Computer Science Program</p>
+            <p>Currently pursuing my degree</p>
+        </div>
+
+        <div class="education-card fade-in">
+            <h3>Relevant Coursework</h3>
+            <p>
+                Object-Oriented Programming, Data Structures and Algorithms,
+                Database Management Systems, Advanced Database Systems,
+                Automata Theory and Web Development.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-title fade-in">
+        <h2>Contact Me</h2>
+        <p>Let's connect and work together</p>
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-info fade-in">
+            <h3>Contact Information</h3>
+
+            <div class="contact-item">
+                <strong>Email:</strong><br>
+                your-email@example.com
+            </div>
+
+            <div class="contact-item">
+                <strong>Phone:</strong><br>
+                +92 XXX XXXXXXX
+            </div>
+
+            <div class="contact-item">
+                <strong>Location:</strong><br>
+                Pakistan
+            </div>
+
+            <div class="social-links">
+                <a href="#" target="_blank">GitHub</a>
+                <a href="#" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+
+        <form class="fade-in" onsubmit="sendMessage(event)">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="text" placeholder="Subject" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 My Portfolio. All Rights Reserved.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    document.querySelectorAll(".nav-links a").forEach(function(link) {
+        link.addEventListener("click", function() {
+            document.getElementById("navLinks").classList.remove("active");
+        });
+    });
+
+    function sendMessage(event) {
+        event.preventDefault();
+        alert("Thank you! Your message has been received.");
+        event.target.reset();
+    }
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    document.querySelectorAll(".fade-in").forEach(function(element) {
+        observer.observe(element);
+    });
+</script>
+
+</body>
+</html>
